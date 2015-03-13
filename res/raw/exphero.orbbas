@@ -1,0 +1,15 @@
+10 print "Exphero 1.0.3 - launching...";
+20 print "Battery," Vbatt*100/756
+30 locate 0,0
+40 delay 3000
+50 P = 0
+60 if hdgval ! P then goto 100
+70 P = hdgval
+80 delay 50
+900 goto 70
+100 goroll hdgval,80,1
+110 if accelone < 8500 then goto 100
+120 print "Accelone," accelone
+130 print "Position," xpos "," ypos
+140 goroll 0,0,1
+150 goto 70
