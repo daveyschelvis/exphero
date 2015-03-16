@@ -8,6 +8,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -25,8 +26,8 @@ public class MainActivity extends Activity {
 	private Sphero mRobot = null;
 	private RelativeLayout ConnectionOverlay;
 	protected boolean OrbActive = false;
-	
-    private TextView StatusBar, ConnectionText;
+	private boolean justErase = false, connected = false;
+    private TextView StatusBar, ConnectionText, LogText;
     
     private DrawingView Drawing;
 	
@@ -36,6 +37,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		StatusBar = (TextView) findViewById(R.id.TitleBar);
+		LogText = (TextView) findViewById(R.id.LogText);
+		LogText.setMovementMethod(new ScrollingMovementMethod());
 		ConnectionText = (TextView) findViewById(R.id.ConnectionLoading); 
 		ConnectionOverlay = (RelativeLayout) findViewById(R.id.ConnectionOverlay);
 		Drawing = (DrawingView) findViewById(R.id.Drawing);
@@ -68,18 +71,19 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onConnected(Robot robot) {
-				mRobot = (Sphero) robot;
-		    	LoadOrb("exphero");
+				connected = true;
 				ConnectStatus("Connected");
-				ChangeStatus("Ready!");
+				mRobot = (Sphero) robot;
+			    	LoadOrb("exphero");
 				ConnectionOverlay(false);
+				OrbActive = false;
 				mRobot.getOrbBasicControl().addEventListener(new OrbBasicControl.EventListener() {
 					
                     @Override
                     public void onEraseCompleted(boolean success) {
                         String successStr = (success) ? "Success" : "Failure";
                         Log.e("Exphero.orb", "Program Erased: "+successStr);
-                        if(success) {
+                        if(success&&!justErase) {
                             Log.e("Exphero.orb", "Load program");
                             mRobot.getOrbBasicControl().loadProgram();
                         }
@@ -128,16 +132,27 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onConnectionFailed(Robot robot) {
-				ConnectionOverlay(true);
-				ConnectStatus("Connection failed");
+				MainActivity.this.runOnUiThread(new Runnable() {
+					public void run() {
+						ConnectionOverlay(true);
+						OrbActive = false;
+						connected = false;
+						ConnectStatus("Connection failed");
+					}
+				});
 			}
 
 			@Override
 			public void onDisconnected(Robot robot) {
-				//ConnectionOverlay(true);
-				OrbActive = false;
-				ConnectStatus("Disconnected");
-				mSpheroConnectionView.startDiscovery();
+				MainActivity.this.runOnUiThread(new Runnable() {
+					public void run() {
+						ConnectionOverlay(true);
+						OrbActive = false;
+						connected = false;
+						ConnectStatus("Disconnected");
+						mSpheroConnectionView.startDiscovery();
+					}
+				});
 			}
 		
 		});
@@ -146,6 +161,7 @@ public class MainActivity extends Activity {
 	@Override
     protected void onResume() {
         super.onResume();
+        OrbActive = false;
 		ConnectionOverlay(true);
 		ConnectStatus("Searching Sphero...");
         mSpheroConnectionView.startDiscovery();
@@ -155,9 +171,17 @@ public class MainActivity extends Activity {
     protected void onPause() {
         super.onPause();
 		ConnectionOverlay(true);
-		ConnectStatus("Connection closed");
-		RobotProvider.getDefaultProvider().disconnectControlledRobots();
-        RobotProvider.getDefaultProvider().removeDiscoveryListeners();
+        OrbActive = false;
+		if(connected) {
+			ConnectStatus("Connection closed");
+	        Log.e("Exphero.orb", "Erase storage");
+	        justErase = true;
+	        mRobot.getOrbBasicControl().abortProgram();
+	        mRobot.getOrbBasicControl().eraseStorage();
+			RobotProvider.getDefaultProvider().disconnectControlledRobots();
+	        RobotProvider.getDefaultProvider().removeDiscoveryListeners();
+			connected = false;
+		}
     }
 	
 	protected void ConnectionOverlay(boolean Show) {
@@ -221,10 +245,11 @@ public class MainActivity extends Activity {
 	}
     private void addMessageToStatus(String msg) {
         Log.e("Exphero.status", msg);
+        LogText.append(msg + "\n");
     }
     private void ChangeStatus(String msg) {
 		Log.d(TAG, "Status:" + msg);
-        StatusBar.setText(msg + "\n");
+        StatusBar.setText(msg);
     }
     private void ConnectStatus(String msg) {
 		Log.d(TAG, "Conntent Status:" + msg);
@@ -233,10 +258,12 @@ public class MainActivity extends Activity {
     public void StartButton(View view) {
     	addMessageToStatus("Start Orb");
     	if(!OrbActive) {
-//    		OrbActive = true;
+        	addMessageToStatus("Install program");
+    		OrbActive = true;
             Log.e("Exphero.orb", "Abort program");
             mRobot.getOrbBasicControl().abortProgram();
             Log.e("Exphero.orb", "Erase storage");
+            justErase = false;
             mRobot.getOrbBasicControl().eraseStorage();
     	} else {
     		SetRoll();

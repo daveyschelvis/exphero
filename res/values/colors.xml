@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <color name="dark_button_BG">#272727</color>
+     <color name="dark_button_BG_Focus">#414141</color>
+     <color name="dark_button_BG_Clicked">#4c4c4c</color>
+     <color name="dark_log_BG">#656565</color>
+</resources>

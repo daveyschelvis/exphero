@@ -23,8 +23,8 @@ public class DrawingView extends View
 
     private Bitmap canvasBitmap;
     
-    private int W = 800;
-    private int H = 400;
+    private int W = 1200;
+    private int H = 800;
     private float BeginX = W/2;
     private float BeginY = H/2;
 	

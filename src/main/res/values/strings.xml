@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Exphero 1</string>
+	<string name="button_name">Start</string>
+	<string name="Connecting_title">Exphero 1.1.0</string>
+	<string name="Connection_loading">loading...</string>
+		<string name="Icon_description">Icon</string>
+    <string name="calibration_title">calibration</string>
+</resources>
