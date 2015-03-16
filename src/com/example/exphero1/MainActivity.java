@@ -68,9 +68,9 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onConnected(Robot robot) {
+				ConnectStatus("Connected");
 				mRobot = (Sphero) robot;
 		    	LoadOrb("exphero");
-				ConnectStatus("Connected");
 				ChangeStatus("Ready!");
 				ConnectionOverlay(false);
 				mRobot.getOrbBasicControl().addEventListener(new OrbBasicControl.EventListener() {
@@ -128,7 +128,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onConnectionFailed(Robot robot) {
-				ConnectionOverlay(true);
+//				ConnectionOverlay(true);
 				ConnectStatus("Connection failed");
 			}
 
