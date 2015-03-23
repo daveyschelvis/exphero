@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Max\AndroidstudioProjects\Exphero1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\Max\AndroidstudioProjects\Exphero1\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-f23dcb0d1c185acd4b0a0562a4d7f4dee7fed774.jar" />
+    </item>
+    <item
+        jar="C:\Users\Max\AndroidstudioProjects\Exphero1\app\libs\RobotLibrary.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="31c82e5e9535de3e1b78f7c14342c13f2cdc59ee">
+        <dex dex="C:\Users\Max\AndroidstudioProjects\Exphero1\app\build\intermediates\pre-dexed\debug\RobotLibrary-6fe5c879862dfb320247738c523be8c48196a324.jar" />
+    </item>
+    <item
+        jar="C:\Users\Max\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Users\Max\AndroidstudioProjects\Exphero1\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-2e7cfb5842af611d9647af540b9929750b23af0b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Max\AndroidstudioProjects\Exphero1\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="C:\Users\Max\AndroidstudioProjects\Exphero1\app\build\intermediates\pre-dexed\debug\classes-1d75be1dba2b9ad742d7ca0dc4332a38d77bf436.jar" />
+    </item>
+    <item
+        jar="C:\Users\Max\AndroidstudioProjects\Exphero1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\Max\AndroidstudioProjects\Exphero1\app\build\intermediates\pre-dexed\debug\classes-d876a6c94ea9cc00ffd76d21e437acd9524b084f.jar" />
+    </item>
+
+</items>
