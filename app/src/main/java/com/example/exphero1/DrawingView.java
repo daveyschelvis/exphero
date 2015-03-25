@@ -16,7 +16,7 @@ public class DrawingView extends View
 	private Paint drawPaint, drawPaint2, canvasPaint;
 
 	private int paintColor = 0xFF58ED3E;
-    private int paintColor2 = 0xFFFF0000;
+    private int paintColor2 = 0xFFd60000;
 
     private Canvas drawCanvas;
 

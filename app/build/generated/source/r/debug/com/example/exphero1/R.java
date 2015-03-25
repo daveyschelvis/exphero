@@ -1348,19 +1348,25 @@ containing a value of this type.
         public static final int dark_button=0x7f020035;
         public static final int ic_launcher=0x7f020036;
         public static final int icon_app=0x7f020037;
+        public static final int icon_sphero=0x7f020038;
+        public static final int icon_sphero_blue=0x7f020039;
+        public static final int icon_sphero_red=0x7f02003a;
     }
     public static final class id {
         public static final int Button=0x7f090044;
-        public static final int ConnectionBG=0x7f09004c;
-        public static final int ConnectionLoading=0x7f09004e;
-        public static final int ConnectionOverlay=0x7f09004b;
-        public static final int ConnectionSpin=0x7f09004d;
+        public static final int Circle=0x7f090049;
+        public static final int CircleBG=0x7f090048;
+        public static final int CircleSphero=0x7f09004a;
+        public static final int ConnectionBG=0x7f09004f;
+        public static final int ConnectionLoading=0x7f090051;
+        public static final int ConnectionOverlay=0x7f09004e;
+        public static final int ConnectionSpin=0x7f090050;
         public static final int Drawing=0x7f090043;
         public static final int FastText=0x7f090046;
         public static final int LogText=0x7f090045;
         public static final int StopButton=0x7f090047;
-        public static final int TitleBar=0x7f09004f;
-        public static final int TitleIcon=0x7f090050;
+        public static final int TitleBar=0x7f090052;
+        public static final int TitleIcon=0x7f090053;
         public static final int above=0x7f090013;
         public static final int action_bar=0x7f090035;
         public static final int action_bar_activity_content=0x7f090000;
@@ -1379,8 +1385,8 @@ containing a value of this type.
         public static final int always=0x7f09001a;
         public static final int beginning=0x7f090017;
         public static final int below=0x7f090014;
-        public static final int calibration_image_button=0x7f090048;
-        public static final int calibration_view=0x7f090049;
+        public static final int calibration_image_button=0x7f09004b;
+        public static final int calibration_view=0x7f09004c;
         public static final int checkbox=0x7f09002d;
         public static final int collapseActionView=0x7f09001b;
         public static final int decor_content_parent=0x7f090033;
@@ -1422,7 +1428,7 @@ containing a value of this type.
         public static final int showCustom=0x7f09000f;
         public static final int showHome=0x7f090010;
         public static final int showTitle=0x7f090011;
-        public static final int sphero_connection_view=0x7f09004a;
+        public static final int sphero_connection_view=0x7f09004d;
         public static final int split_action_bar=0x7f090007;
         public static final int submit_area=0x7f090040;
         public static final int tabMode=0x7f09000b;

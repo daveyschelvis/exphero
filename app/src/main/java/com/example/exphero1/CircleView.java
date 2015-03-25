@@ -16,19 +16,22 @@ public class CircleView extends View
 	private Paint drawPaint, drawPaint2, canvasPaint;
 
 	private int paintColor = 0xFF58ED3E;
-    private int paintColor2 = 0xFFFF0000;
+    private int paintColor2 = 0xFFd60000;
 
     private Canvas drawCanvas;
 
     private Bitmap canvasBitmap;
+    final float scale = getContext().getResources().getDisplayMetrics().density;
+    final float dps = 200;
+    int pixels = (int) (dps * scale + 0.5f);
 
-    private int W = 600;
-    private int H = 600;
+    private int W = pixels;
+    private int H = pixels;
     private float BeginX = W/2;
     private float BeginY = H/2;
 
-    private float Length1 = 200;
-    private float Length2 = 150;
+    private float Length1 = pixels/2-15;
+    private float Length2 = pixels/2-45;
 
 
     public CircleView(Context context, AttributeSet attrs){
@@ -42,7 +45,7 @@ public class CircleView extends View
 		drawPaint = new Paint();
 		drawPaint.setColor(paintColor);
 		drawPaint.setAntiAlias(false);
-		drawPaint.setStrokeWidth(15);
+		drawPaint.setStrokeWidth(10);
 		drawPaint.setStyle(Paint.Style.STROKE);
 		drawPaint.setStrokeJoin(Paint.Join.ROUND);
 		drawPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -50,10 +53,10 @@ public class CircleView extends View
 		drawPaint2 = new Paint();
 		drawPaint2.setColor(paintColor2);
 		drawPaint2.setAntiAlias(false);
-		drawPaint2.setStrokeWidth(5);
+		drawPaint2.setStrokeWidth(10);
 		drawPaint2.setStyle(Paint.Style.STROKE);
-		drawPaint2.setStrokeJoin(Paint.Join.BEVEL);
-		drawPaint2.setStrokeCap(Paint.Cap.BUTT);
+		drawPaint2.setStrokeJoin(Paint.Join.ROUND);
+		drawPaint2.setStrokeCap(Paint.Cap.ROUND);
 	
 		canvasPaint = new Paint(Paint.DITHER_FLAG);
 		
@@ -68,6 +71,8 @@ public class CircleView extends View
 		drawCanvas = new Canvas(canvasBitmap);
 		
 	    Log.e("Circle.status", "Size changed");
+
+        DrawLine(0,1,true);
 		
 	}
 	
@@ -82,18 +87,18 @@ public class CircleView extends View
         drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
         invalidate();
     }
-	public void DrawLine(float Angle1, float Angle2, Boolean DrawAngle2) {
+	public void DrawLine(float Angle1, float Angle2, boolean DrawAngle2) {
         Reset();
-        float EndX = (float) (BeginX+Math.sin(Angle1)*Length1);
-        float EndY = (float) (BeginY-Math.cos(Angle1)*Length1);
+        float EndX = (float) (BeginX+Math.sin(Angle1*Math.PI/180)*Length1);
+        float EndY = (float) (BeginY-Math.cos(Angle1*Math.PI/180)*Length1);
 	    Log.e("Circle.status", "Line: "+EndX+", "+EndY);
 	    drawPath.moveTo(BeginX, BeginY);
 	    drawPath.lineTo(EndX, EndY);
 	    drawCanvas.drawPath(drawPath, drawPaint);
 	    drawPath.reset();
         if(DrawAngle2) {
-            float EndX2 = (float) (BeginX+Math.sin(Angle2)*Length2);
-            float EndY2 = (float) (BeginY-Math.cos(Angle2)*Length2);
+            float EndX2 = (float) (BeginX+Math.sin(Angle2*Math.PI/180)*Length2);
+            float EndY2 = (float) (BeginY-Math.cos(Angle2*Math.PI/180)*Length2);
             Log.e("Circle.status", "Line2: "+EndX2+", "+EndY2);
             drawPath.moveTo(BeginX, BeginY);
             drawPath.lineTo(EndX2, EndY2);
